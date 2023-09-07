@@ -1,5 +1,5 @@
 web/node_modules
-db/data/*
+/.mysql-data
 
 !db/data/.gitkeep
 /.vs
