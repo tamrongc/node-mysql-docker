@@ -2,6 +2,8 @@ version: "3.8"
 services:
   db:
     build: ./db
+    volumes:
+      - "./.mysql-data/db:/var/lib/mysql"
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: test
