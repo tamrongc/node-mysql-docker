@@ -1,0 +1,40 @@
+.container {
+	margin-top: 100px;
+}
+
+.box {
+	cursor: pointer;
+}
+
+.counter-box {
+	display: block;
+	background: #f6f6f6;
+	padding: 40px 20px 37px;
+	text-align: center
+}
+
+.counter-box p {
+	margin: 5px 0 0;
+	padding: 0;
+	color: white;
+	font-size: 24px;
+	font-weight: bold
+}
+
+.counter-box i {
+	font-size: 60px;
+	margin: 0 0 15px;
+	color: white;
+}
+
+.counter {
+	margin-top: 15px;
+}
+
+.counter-box.green {
+	background: #3acf87;
+}
+
+.counter-box.red {
+	background: tomato;
+}
