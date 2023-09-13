@@ -5,18 +5,24 @@ services:
     volumes:
       - "./.mdbdata/mdb10:/var/lib/mysql"
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: test
+      - MYSQL_ROOT_PASSWORD=${PASSWORD}
+      - MYSQL_DATABASE=${DATABASE}
+    ports:
+      - "3306:3306"
     restart: always
+    env_file:
+      - ./db/.env
   web:
     build: ./web
     environment:
-      MYSQL_DATABASE: test
-      MYSQL_USER: root
-      MYSQL_PASSWORD: password
-      MYSQL_HOST: db
+      - MARIADB_HOST=${HOST}
+      - MARIADB_USER=${USER}
+      - MARIADB_PASSWORD=${PASSWORD}
+      - MARIADB_DATABASE=${DATABASE}
     ports:
       - "5000:5000"
     depends_on:
       - db
     restart: on-failure
+    env_file:
+      - ./web/.env
