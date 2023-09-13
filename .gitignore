@@ -1,5 +1,6 @@
 web/node_modules
 /.mysql-data
+/.mdbdata
 
 !db/data/.gitkeep
 /.vs
