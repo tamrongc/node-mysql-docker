@@ -10,7 +10,6 @@ const connection = new mysql.createConnection({
 	host: process.env.HOST,
 	user: process.env.USER,
 	password: process.env.PASSWORD,
-	database: process.env.DATABASE,
 	port: process.env.PORT,
 	ssl: {
 		rejectUnauthorized: false
@@ -25,10 +24,26 @@ connection.connect(
 		}
 		else {
 			console.log("Connection established.");
+			connection.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DATABASE}`, function (err, results) {
+				if (err) {
+					throw err;
+				}
+
+				connection.query(`USE ${process.env.DATABASE}`, function (err, results) {
+					if (err) {
+						throw err;
+					}
+					connection.query(`CREATE TABLE IF NOT EXISTS Counters(counter_id BIGINT PRIMARY KEY AUTO_INCREMENT);`, function (err, results) {
+						if (err) {
+							throw err;
+						}
+					});
+					app.listen(5000, () => console.log('listining on port 5000'));
+				});
+			});
 		}
 	});
 
-app.listen(5000, () => console.log('listining on port 5000'));
 app.get('/', (req, res) => { res.sendFile(__dirname + '/public/index.html'); });
 
 app.get('/count', (req, res) => {

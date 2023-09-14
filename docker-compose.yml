@@ -1,32 +1,13 @@
 version: "3.8"
 services:
-  db:
-    build: ./db
-    volumes:
-      - "./.mysql-data/db:/var/lib/mysql"
-    environment:
-      - MARIADB_ROOT_PASSWORD=${PASSWORD}
-      - MARIADB_DATABASE=${DATABASE}
-      - MARIADB_USER=${USER}
-      - MARIADB_PASSWORD=${PASSWORD}
-      # - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-
-    ports:
-      - "3306:3306"
-    restart: always
-    env_file:
-      - ./db/.env
   web:
     build: ./web
     environment:
       - MARIADB_HOST=${HOST}
       - MARIADB_USER=${USER}
       - MARIADB_PASSWORD=${PASSWORD}
-      - MARIADB_DATABASE=${DATABASE}
     ports:
       - "5000:5000"
-    depends_on:
-      - db
     restart: on-failure
     env_file:
       - ./web/.env

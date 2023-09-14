@@ -1,9 +1,0 @@
-CREATE DATABASE IF NOT EXISTS test2;
-
-USE test2;
-
-CREATE TABLE IF NOT EXISTS Counters(
-	counter_id BIGINT PRIMARY KEY AUTO_INCREMENT
-);
-
-flush privileges;
