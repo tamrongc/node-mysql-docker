@@ -3,10 +3,14 @@ services:
   db:
     build: ./db
     volumes:
-      - "./.mdbdata/mdb10:/var/lib/mysql"
+      - "./.mysql-data/db:/var/lib/mysql"
     environment:
-      - MYSQL_ROOT_PASSWORD=${PASSWORD}
-      - MYSQL_DATABASE=${DATABASE}
+      - MARIADB_ROOT_PASSWORD=${PASSWORD}
+      - MARIADB_DATABASE=${DATABASE}
+      - MARIADB_USER=${USER}
+      - MARIADB_PASSWORD=${PASSWORD}
+      # - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+
     ports:
       - "3306:3306"
     restart: always
